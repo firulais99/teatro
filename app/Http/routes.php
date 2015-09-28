@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
-    //return view('welcome');
-    return "ando haciendo pŕuebas maldito cholo no mentiras te amo chiquilla.";
+    return view('welcome');
+    //return "ando haciendo pŕuebas maldito cholo no mentiras te amo chiquilla.";
+
 });
