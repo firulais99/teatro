@@ -13,4 +13,6 @@
 
 Route::get('/', function () {
     return view('welcome');
+    //return "Hola, petición procesada te saluda.";
+Route::get('Eventos','Eventoscontroller');
 });
