@@ -13,4 +13,9 @@
 
 Route::get('/', function () {
     return view('welcome');
+
+    //return "Hola, petición procesada te saluda.";
+Route::get('Eventos','Eventoscontroller');
+    //return "ando haciendo pŕuebas maldito cholo no mentiras te amo chiquilla.";
+Route::get('ventas/', 'VentasController@index');
 });
