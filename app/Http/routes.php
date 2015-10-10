@@ -16,6 +16,13 @@ Route::get('/', function () {
 
     //return "Hola, petición procesada te saluda.";
 Route::get('Eventos','Eventoscontroller');
+<<<<<<< HEAD
     //return "ando haciendo pŕuebas maldito cholo no mentiras te amo chiquilla.";
 Route::get('ventas/', 'VentasController@index');
+=======
+=======
+    //return "ando haciendo pŕuebas maldito cholo no mentiras te amo chiquilla.";
+
+>>>>>>> 7e43aac51173918fd306cd80c9d2521701f7740d
+>>>>>>> 554eea1afd186ff0bc0a99c7cf6970436a67b88d
 });
