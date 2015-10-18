@@ -14,7 +14,7 @@ class CreateAccesosTable extends Migration
     {
       Schema::create('Accesos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Nombre_admin')->references('nombre')->on('Administradores');
+            $table->string('id_admin')->references('id')->on('Administradores');
             $table->timestamps();
         });
     }
