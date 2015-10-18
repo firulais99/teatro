@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTaquillaTable extends Migration
+class CreateTeatroTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,13 @@ class CreateTaquillaTable extends Migration
      */
     public function up()
     {
-        Schema::create('Taquilla', function (Blueprint $table) {
+        Schema::create('Teatro', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
+            $table->string('municipio');
+            $table->string('domicilio');
+            $table->string('email');
+            $table->string('telefono');
             $table->timestamps();
         });
     }
@@ -25,6 +30,6 @@ class CreateTaquillaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Taquilla');
+        Schema::drop('Teatro');
     }
 }

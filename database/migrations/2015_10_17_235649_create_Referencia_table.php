@@ -1,9 +1,9 @@
-    <?php
+<?php
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBoletosTable extends Migration
+class CreateReferenciaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,9 @@ class CreateBoletosTable extends Migration
      */
     public function up()
     {
-        Schema::create('Boletos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-        });
-         
-
-
-
+        //
     }
+
     /**
      * Reverse the migrations.
      *
@@ -28,6 +22,6 @@ class CreateBoletosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Boletos');
+        //
     }
 }
