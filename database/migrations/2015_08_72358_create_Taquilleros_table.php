@@ -14,7 +14,7 @@ class CreateTaquillerosTable extends Migration
     {
        Schema::create('Taquilleros', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreign('id_teatro')->references('id')->on('Teatro');
+            $table->foreign('id_teatro')->references('Teatro')->on('id');
             $table->string('Usuario');
             $table->string('password', 60);
             $table->string('Nombre');
