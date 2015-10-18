@@ -12,7 +12,7 @@ class AsientosEvento extends Migration
      */
     public function up()
     {
-        Schema::table('asientos_evento', function (Blueprint $table) {
+        Schema::create('Asientos_evento', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->integer('id_asiento')->undigned();
