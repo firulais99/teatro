@@ -14,6 +14,7 @@ class CreateVentaTable extends Migration
     {
         Schema::create('Ventas', function (Blueprint $table) {
             $table->increments('id');
+            $table->increments('id_lineadeventa')->unsigned();
             $table->foreign('id_lineadeventa')->references('id')->on('lineadeventa');
             $table->integer('id_pago')->unsigned();
             $table->foreign('id_pago')->references('id')->on('Pagos');
@@ -30,6 +31,6 @@ class CreateVentaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Venta');
+        Schema::drop('Ventas');
     }
 }

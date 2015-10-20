@@ -15,9 +15,10 @@ class CreateLineadeventaTable extends Migration
        Schema::create('lineadeventa', function (Blueprint $table) {
             //
             $table->increments('id');
-            $table->foreign('id_pago')->references('id')->on('pago');
+            $table->integer('id_pago')->unsigned();
+            $table->foreign('id_pago')->references('id')->on('Pagos');
             $table->boolean('confirmado');
-             $table->timestamps();
+            $table->timestamps();
         });
     }
 
