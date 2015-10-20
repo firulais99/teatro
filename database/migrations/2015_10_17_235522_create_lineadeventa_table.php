@@ -12,7 +12,14 @@ class CreateLineadeventaTable extends Migration
      */
     public function up()
     {
-        //
+       Schema::create('lineadeventa', function (Blueprint $table) {
+            //
+            $table->increments('id');
+            $table->boolean('confirmado');
+              $table->foreign('id_pago')->references('id')->on('pago');
+          
+             $table->timestamps();
+        });
     }
 
     /**

@@ -14,6 +14,7 @@ class CreateVentaTable extends Migration
     {
         Schema::create('Venta', function (Blueprint $table) {
             $table->increments('id');
+             $table->foreign('id_lineadeventa')->references('id')->on('lineadeventa');
             $table->timestamps();
         });
     }

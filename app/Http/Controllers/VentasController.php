@@ -20,6 +20,12 @@ class VentasController extends Controller
     }
 
     public function reservarAsientos($id_evento){
+    	$evento = Eventos::getEvento($id_evento);
+    	$horarios = Eventos::getHorariosEvento($id_evento);
+        return view('ventas.seleccion_asiento', compact('evento', 'horarios', 'id_evento'));
+    }
+
+    public function generarEcenario(Request $request){
     	$seccion1 = array(
     		array('BB', array(0,0,0,0,0,0,0,0,0,0,0,0)),
     		array('AA', array(0,0,0,0,0,0,0,32,31,30,29,0)),
@@ -77,8 +83,65 @@ class VentasController extends Controller
     		array('O', array(13,12,11,10,9,8,7,6,5,4,3,2,1)),
     		array('N', array(13,12,11,10,9,8,7,6,5,4,3,2,1))
     	);
-    	$evento = Eventos::getEvento($id_evento);
-    	$horarios = Eventos::getHorariosEvento($id_evento);
-    	$asientos_reservados = Eventos::getAsientosReservados($id_evento);
+    	$asientos_reservados = Eventos::getAsientosReservados($request->input($id_evento));
+    	$asientos = '<table>
+    					<tr>
+    						<td>' . $this->generarSeccion($asientos_reservados, $seccion1) . '</td>
+    						<td>' . $this->pintaNombreFila($seccion1) . '</td>
+    						<td>' . $this->generarSeccion($asientos_reservados, $seccion2) . '</td>
+    						<td>' . $this->pintaNombreFila($seccion2) . '</td>
+    						<td>' . $this->generarSeccion($asientos_reservados, $seccion3) . '</td>
+    					</tr>
+    					<tr>
+    						<td colspan="5"></td>
+    					</tr>
+    					<tr>
+    						<td>' . $this->generarSeccion($asientos_reservados, $seccion4) . '</td>
+    						<td>' . $this->pintaNombreFila($seccion4) . '</td>
+    						<td>' . $this->generarSeccion($asientos_reservados, $seccion5) . '</td>
+    						<td>' . $this->pintaNombreFila($seccion5) . '</td>
+    						<td>' . $this->generarSeccion($asientos_reservados, $seccion6) . '</td>
+    					</tr>
+    				</table>';
+
+    	return response()->json(['ecenario' => $asientos]);
+    }
+
+    public function pintaNombreFila($seccion){
+    	$tabla = '<table>';
+
+    	foreach($seccion as $fila)
+    		$tabla .= '<tr><td><strong>' . $fila[0] . '</strong></td></tr>';
+
+    	$tabla .= '</table>';
+    	return $tabla;
+    }
+
+    public function pintarSeccion($asientos_reservados, $seccion){
+    	$seccion = '<table>';
+    	$size = 0;
+
+    	foreach($seccion as $fila){
+    		$size = count($fila[1]);
+    		$seccion .= '<tr>';
+
+    		for($i = 0; $i < $size; $i++){
+    			$seccion = '<td>';
+
+    			foreach($asientos_reservados as $reservado){
+    				if(strcmp($recervado->fila, $fila[0]) == 0 && strcmp($recervado->numero, fila[1][$i]) == 0){
+    					$seccion .= '<div class="reservado">';
+    				}else
+    					$seccion .= '<div class="libre">';
+    			}
+
+    			$seccion .= '<input type="hidden" id="' . $recervado->fila . '-' . $recervado->numero . ' " name="' . $recervado->fila . '-' . $recervado->numero . '" value="' . $recervado->fila . '-' . $recervado->numero . '"/></div></td>';
+    		}
+
+    		$seccion .= '</tr>';
+    	}
+
+    	$seccion .= '</table>';
+    	return $seccion;
     }
 }

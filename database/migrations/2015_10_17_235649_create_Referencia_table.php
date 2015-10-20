@@ -12,7 +12,9 @@ class CreateReferenciaTable extends Migration
      */
     public function up()
     {
-        //
+       Schema::create('Asientos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
     }
 
     /**

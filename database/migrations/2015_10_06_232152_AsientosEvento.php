@@ -15,7 +15,7 @@ class AsientosEvento extends Migration
         Schema::create('Asientos_evento', function (Blueprint $table) {
             //
             $table->increments('id');
-            $table->integer('id_asiento')->undigned();
+            $table->integer('id_asiento')->unsigned();
             $table->foreign('id_asiento')->references('asientos')->on('id');
             $table->integer('id_evento')->unsigned();
             $table->foreign('id_evento')->references('eventos')->on('id');
