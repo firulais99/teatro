@@ -8,8 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Eventos;
 
-class VentasController extends Controller
-{
+class VentasController extends Controller{
     /**
      * Display a listing of the resource.
      *
@@ -87,9 +86,9 @@ class VentasController extends Controller
     	$asientos = '<table>
     					<tr>
     						<td>' . $this->generarSeccion($asientos_reservados, $seccion1) . '</td>
-    						<td>' . $this->pintaNombreFila($seccion1) . '</td>
+    						<td>' . $this->generarNombreFila($seccion1) . '</td>
     						<td>' . $this->generarSeccion($asientos_reservados, $seccion2) . '</td>
-    						<td>' . $this->pintaNombreFila($seccion2) . '</td>
+    						<td>' . $this->generarNombreFila($seccion2) . '</td>
     						<td>' . $this->generarSeccion($asientos_reservados, $seccion3) . '</td>
     					</tr>
     					<tr>
@@ -97,9 +96,9 @@ class VentasController extends Controller
     					</tr>
     					<tr>
     						<td>' . $this->generarSeccion($asientos_reservados, $seccion4) . '</td>
-    						<td>' . $this->pintaNombreFila($seccion4) . '</td>
+    						<td>' . $this->generarNombreFila($seccion4) . '</td>
     						<td>' . $this->generarSeccion($asientos_reservados, $seccion5) . '</td>
-    						<td>' . $this->pintaNombreFila($seccion5) . '</td>
+    						<td>' . $this->generarNombreFila($seccion5) . '</td>
     						<td>' . $this->generarSeccion($asientos_reservados, $seccion6) . '</td>
     					</tr>
     				</table>';
@@ -107,7 +106,7 @@ class VentasController extends Controller
     	return response()->json(['ecenario' => $asientos]);
     }
 
-    public function pintaNombreFila($seccion){
+    public function generarNombreFila($seccion){
     	$tabla = '<table>';
 
     	foreach($seccion as $fila)
@@ -117,7 +116,7 @@ class VentasController extends Controller
     	return $tabla;
     }
 
-    public function pintarSeccion($asientos_reservados, $seccion){
+    public function generarSeccion($asientos_reservados, $seccion){
     	$seccion = '<table>';
     	$size = 0;
 
@@ -128,12 +127,11 @@ class VentasController extends Controller
     		for($i = 0; $i < $size; $i++){
     			$seccion = '<td>';
 
-    			foreach($asientos_reservados as $reservado){
-    				if(strcmp($recervado->fila, $fila[0]) == 0 && strcmp($recervado->numero, fila[1][$i]) == 0){
+    			foreach($asientos_reservados as $reservado)
+    				if(strcmp($recervado->fila, $fila[0]) == 0 && strcmp($recervado->numero, $fila[1][$i]) == 0)
     					$seccion .= '<div class="reservado">';
-    				}else
+    				else
     					$seccion .= '<div class="libre">';
-    			}
 
     			$seccion .= '<input type="hidden" id="' . $recervado->fila . '-' . $recervado->numero . ' " name="' . $recervado->fila . '-' . $recervado->numero . '" value="' . $recervado->fila . '-' . $recervado->numero . '"/></div></td>';
     		}

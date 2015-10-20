@@ -21,8 +21,8 @@ class CreateTaquillerosTable extends Migration
             $table->string('domicilio');
             $table->string('email');
             $table->string('telefono');
-            $table->string('nom_teatro')->unsigned();
-            $table->foreign('nom_teatro')->references('nombre')->on('Teatro');
+            $table->integer('id_teatro')->unsigned();
+            $table->foreign('id_teatro')->references('id')->on('Teatro');
             $table->timestamps();
         });
 

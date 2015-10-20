@@ -27,3 +27,4 @@ Route::get('/', function () {
 //>>>>>>> 554eea1afd186ff0bc0a99c7cf6970436a67b88d
 });
 
+Route::get('/comprar/{id_evento}', 'VentasController@reservarAsientos');

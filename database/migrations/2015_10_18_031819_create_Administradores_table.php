@@ -14,10 +14,10 @@ class CreateAdministradoresTable extends Migration
     {
       Schema::create('Administradores', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Usuario');
-            $table->string('password', 60);
-            $table->string('Nombre');
-            $table->string('Apellido');
+            $table->string('usuario');
+            $table->string('password');
+            $table->string('nombre');
+            $table->string('apellido');
             $table->string('domicilio');
             $table->string('email');
             $table->string('telefono');
