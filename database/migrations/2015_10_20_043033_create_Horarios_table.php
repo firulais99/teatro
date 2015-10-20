@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTeatroTable extends Migration
+class CreateHorariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,9 @@ class CreateTeatroTable extends Migration
      */
     public function up()
     {
-        Schema::create('Teatros', function (Blueprint $table) {
+        Schema::create('Horarios', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
-            $table->string('municipio');
-            $table->string('domicilio');
-            $table->string('email');
-            $table->string('telefono');
+            $table->string('hora');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreateTeatroTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Teatro');
+        Schema::drop('Horarios');
     }
 }
