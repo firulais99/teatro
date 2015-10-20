@@ -12,7 +12,7 @@ class CreateTeatroTable extends Migration
      */
     public function up()
     {
-        Schema::create('Teatro', function (Blueprint $table) {
+        Schema::create('Teatros', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->string('municipio');
