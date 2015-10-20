@@ -14,6 +14,10 @@ class CreateAsientosTable extends Migration
     {
         Schema::create('Asientos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_teatro')->unsigned();
+            $table->foreign('id_teatro')->references('id')->on('Teatro');
+            $table->integer('numero');
+            $table->string('fila');
             $table->timestamps();
         });
     }

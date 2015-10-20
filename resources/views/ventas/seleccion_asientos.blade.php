@@ -19,6 +19,7 @@
 				<div class="panel-heading">Asientos seleccionados.</div>
 					<ul class="list-group" id="asientos_seleccionados"></ul>
 				</div>
+				<label>Total MN: $</label><label id="costo"></label>
 			</div>
 		</div>
 		<div class="secciones" id="right">

@@ -24,7 +24,7 @@ class Eventos extends Model
 	}
 
 	public static function getAsientosReservados($id_evento){
-		return self::join('asientos_evento', 'evento.id', '=', 'asientos_evento.id_evento')
+		return self::join('Asientos_evento', 'evento.id', '=', 'asientos_evento.id_evento')
 			->join('asientos', 'asientos.id', '=', 'asientos_evento.id_asiento')
 			->select('asientos.*')
 			->where('eventos.id', '=', $id_evento)
