@@ -14,13 +14,10 @@ class CreateAccesosTable extends Migration
     {
       Schema::create('Accesos', function (Blueprint $table) {
             $table->increments('id');
-<<<<<<< HEAD
             $table->interger('id')->unsigned();
             $table->foreign('id_admin')->references('Administradores')->on('id');
-=======
             $table->string('nombre');
             $table->string('url');
->>>>>>> 839143c3e259435a78edca875b0948de276af3b2
             $table->timestamps();
         });
     }
