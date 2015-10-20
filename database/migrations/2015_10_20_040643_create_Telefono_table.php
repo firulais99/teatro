@@ -16,7 +16,7 @@ class CreateTelefonoTable extends Migration
             $table->increments('id');
             $table->string('telefono');
             $table->integer('id_teatro')->unsigned();
-            $table->foreign('id_teatro')->references('id')->on('Teatro');
+            $table->foreign('id_teatro')->references('id')->on('Teatros');
             $table->timestamps();
         });
     }

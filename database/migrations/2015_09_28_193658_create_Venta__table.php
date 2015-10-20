@@ -14,12 +14,12 @@ class CreateVentaTable extends Migration
     {
         Schema::create('Ventas', function (Blueprint $table) {
             $table->increments('id');
-            $table->increments('id_lineadeventa')->unsigned();
+            $table->integer('id_lineadeventa')->unsigned();
             $table->foreign('id_lineadeventa')->references('id')->on('lineadeventa');
-            $table->integer('id_pago')->unsigned();
-            $table->foreign('id_pago')->references('id')->on('Pagos');
             $table->integer('id_evento')->unsigned();
             $table->foreign('id_evento')->references('id')->on('Eventos');
+            $table->integer('id_pago')->unsigned();
+            $table->foreign('id_pago')->references('id')->on('Pagos');
             $table->timestamps();
         });
     }

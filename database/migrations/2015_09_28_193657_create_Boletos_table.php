@@ -18,14 +18,11 @@ class CreateBoletosTable extends Migration
             $table->foreign('id_evento')->references('id')->on('Eventos');
             $table->string('id_referencia');
             $table->integer('id_asiento')->unsigned();
-                $table->integer('id_pago')->unsigned();
+            $table->foreign('id_asiento')->references('id')->on('Asientos');
+            $table->integer('id_pago')->unsigned();
             $table->foreign('id_pago')->references('id')->on('Pagos');
             $table->timestamps();
         });
-         
-
-
-
     }
     /**
      * Reverse the migrations.

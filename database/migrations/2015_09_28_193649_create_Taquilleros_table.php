@@ -14,15 +14,16 @@ class CreateTaquillerosTable extends Migration
     {
        Schema::create('Taquilleros', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_teatro')->unsigned();
-            $table->foreign('id_teatro')->references('id')->on('Teatro');
             $table->string('Usuario');
             $table->string('password', 60);
             $table->string('Nombre');
             $table->string('Apellido');
             $table->string('domicilio');
             $table->string('email');
-            
+            $table->string('telefono');
+            $table->integer('id_teatro')->unsigned();
+            $table->foreign('id_teatro')->references('id')->on('Teatros');
+            $table->timestamps();
         });
 
     }
