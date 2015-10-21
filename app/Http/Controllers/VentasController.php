@@ -132,7 +132,7 @@ class VentasController extends Controller{
     					</tr>
     				</table>';
 
-    	return response()->json(['ecenario' => $asientos]);
+    	return response()->json(['escenario' => $asientos]);
     }
 
     public function generarNombreFila($seccion){

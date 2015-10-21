@@ -32,7 +32,30 @@
 	</div>
 </div>
 <div class="secciones" id="right">
-	<div id="teatro"><div>
-	<label>Ecenario</label></div>
+	<div class="panel panel-default" id="panel_escenario">
+		<div id="teatro"><div>
+		<br/>
+		<div id="escenario"><h2>Escenario</h2></div>
+	</div>
 </div>
+<input type="hidden" name="id_evento" id="id_evento" value="{{$id_evento}}"/>
+<script type="text/javascript">
+	$(document).on('ready', function(){
+		pintarEscenario();
+	});
+
+	function pintarEscenario(){
+		$.post(
+			'http://localhost:8000/esenario',
+			{
+				horario: $('#horario').val(),
+				id_evento: $('#id_evento').val()
+			},
+			function(json){
+				$('#teatro').html(json.escenario);
+			},
+			'json'
+		);
+	}
+</script>
 @stop

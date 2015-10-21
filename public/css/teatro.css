@@ -15,11 +15,11 @@
 }
 
 #right{
-	width: 66%;
+	width: 54%;
 }
 
 #left{
-	width: 30%;
+	width: 41%;
 }
 
 #seleccionados{
@@ -37,6 +37,19 @@
 	text-align: left;
 	padding: 1em;
 
+}
+
+#panel_escenario{
+	text-align: center;
+	padding: 1em; 
+}
+
+#escenario{
+	border-radius: 2em;
+	border: 1px #ccc solid;
+	width: 50%;
+	height: 5em;
+	margin: 0 auto;
 }
 
 .listado_eventos a{
@@ -68,4 +81,8 @@
 .img_evento{
 	width: 15em;
 	height: 30em;
+}
+
+.evento_info{
+	width: 80%;
 }

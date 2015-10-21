@@ -4,7 +4,7 @@
 <div class="secciones">
 	<img class="img_evento img-thumbnail" src="/imgs/{{$evento->image}}" title="{{$evento->nombre}}"></img>
 </div>
-<div class="secciones">
+<div class="secciones evento_info">
 	<div class="panel panel-default">
 	  	<div class="panel-heading"><h2>{{$evento->nombre}}</h2></div>
 	  	<div class="panel-body">
@@ -38,6 +38,5 @@
 		</div>
 		<a href="/reservar/{{$evento->id}}" class="btn btn-default secciones">Reservar Asientos <span class="glyphicon glyphicon-shopping-cart"></span></a>
 	</div>
-</div>
 </div>
 @stop
