@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Eventos;
+use App\Eventos;
 
 class VentasController extends Controller{
     /**
@@ -14,14 +14,43 @@ class VentasController extends Controller{
      *
      * @return Response
      */
+
+    private $meses = array(
+            '01' => 'Enero',
+            '02' => 'Febrero',
+            '03' => 'Marzo',
+            '04' => 'Abril',
+            '05' => 'Mayo',
+            '06' => 'Junio',
+            '07' => 'Julio',
+            '08' => 'Agosto',
+            '09' => 'Septiembre',
+            '10' => 'Octubre',
+            '11' => 'Novienbre',
+            '12' => 'Diciembre'
+    );
+
     public function index(){
-        return view("ventas.seccion1");
+    	$meses = $this->meses;
+        $eventos = Eventos::getEventosMes()->paginate(8);
+        $titulo = 'Lista de Eventos';
+        return view("ventas.eventos", compact('eventos', 'titulo', 'meses'));
+    }
+
+    public function verEvento($id_evento){
+        $meses = $this->meses;
+    	$evento = Eventos::getEvento($id_evento);
+    	$horarios_evento = Eventos::getHorariosEvento($id_evento);
+    	$titulo = $evento->nombre;
+    	return view('ventas.evento', compact('evento', 'horarios_evento', 'titulo', 'meses'));
     }
 
     public function reservarAsientos($id_evento){
     	$evento = Eventos::getEvento($id_evento);
     	$horarios = Eventos::getHorariosEvento($id_evento);
-        return view('ventas.seleccion_asiento', compact('evento', 'horarios', 'id_evento'));
+        $titulo = $evento->nombre;
+    	$titulo = 'Seleccion de asientos';
+        return view('ventas.seleccion_asientos', compact('evento', 'horarios', 'id_evento', 'titulo'));
     }
 
     public function generarEcenario(Request $request){
@@ -141,5 +170,22 @@ class VentasController extends Controller{
 
     	$seccion .= '</table>';
     	return $seccion;
+    }
+
+    public function insercionesDatos(){
+        $query = "insert into Teatros (nombre, domicilio, telefono, email, municipio) values('Cholitos theater', 'Schwarzstrasse 99', '7232323', 'cholitos_theater@cholitos.com', 'koeln')";
+        \DB::statement($query);
+        $query = "insert into Eventos (id_teatro, nombre, sinopsis, elenco, fecha, artista, image) values(1, 'Enrique Bunbury Unplugged', 'asfasfsdfsadfadfadsfasdfasdfasdfasdfsafasdfasdfasdfasdfasdfasdfasdfasdfadfasdfasdfasdfadfasdfasdfasdfasdfasdFasfasfsdfsadfadfadsfasdfasdfasdfasdfsafasdfasdfasdfasdfasdfasdfasdfasdfadfasdfasdfasdfadfasdfasdfasdfasdfasdF', 'Enrique Bunbury', '2015-10-09', 'Enrique Bunbury', 'bunbury.jpg')";
+
+        for($i = 0; $i < 30; $i++)
+            \DB::statement($query);
+
+        $query = "insert into Horarios (hora) values('17:00:00')";
+        \DB::statement($query);
+       
+        for($i = 0; $i < 30; $i++){
+        	$query = "insert into Horarios_evento (id_evento, id_horario, fecha) values(" . ($i + 1) . ", 1, '2015-10-09')";
+            \DB::statement($query);
+        }
     }
 }

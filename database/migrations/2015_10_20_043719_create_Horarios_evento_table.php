@@ -17,6 +17,7 @@ class CreateHorariosEventoTable extends Migration
             $table->foreign('id_evento')->references('id')->on('Eventos');
             $table->integer('id_horario')->unsigned();
             $table->foreign('id_horario')->references('id')->on('Horarios');
+            $table->date('fecha');
             $table->timestamps();
         });
     }

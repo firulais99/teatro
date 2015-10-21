@@ -15,11 +15,11 @@ class Eventos extends Model
 	}
 
 	public static function getHorariosEvento($id_evento){
-		return self::join('horarios_evento', 'eventos.id', '=', 'horarios_evento.id_evento')
-			->join('horarios', 'horarios.id', '=', 'horarios_evento.id_horario')
-			->select('horarios.hora')
-			->where('eventos.id', '=', $id_evento)
-			->orderBy('hora', 'desc')
+		return self::join('Horarios_evento', 'Eventos.id', '=', 'Horarios_evento.id_evento')
+			->join('Horarios', 'Horarios.id', '=', 'Horarios_evento.id_horario')
+			->select('Horarios.hora', 'Horarios_evento.fecha')
+			->where('Eventos.id', '=', $id_evento)
+			->orderBy('Horarios.hora', 'desc')
 			->get();
 	}
 
@@ -29,5 +29,11 @@ class Eventos extends Model
 			->select('asientos.*')
 			->where('eventos.id', '=', $id_evento)
 			->get();
+	}
+
+	public static function getEventosMes(){ 
+		return self::join('Horarios_evento', 'Horarios_evento.id_evento', '=', 'Eventos.id')
+			->select('Eventos.*')
+			->where('Horarios_evento.fecha', 'like', '%' . date('Y-m') . '-%');
 	}
 }

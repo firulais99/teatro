@@ -17,8 +17,8 @@ class CreateEventosTable extends Migration
             $table->integer('id_teatro')->unsigned(); 
             $table->foreign('id_teatro')->references('id')->on('Teatros');
             $table->string('nombre');
-            $table->string('sinopsis');
-            $table->string('Elenco');
+            $table->text('sinopsis');
+            $table->string('elenco');
             $table->datetime('fecha');
             $table->string('artista');
             $table->string('image');

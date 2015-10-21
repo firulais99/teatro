@@ -1,0 +1,71 @@
+#cabezera{
+	text-align: center;
+}
+
+#oeste{
+	width: 17%;
+}
+
+#centro{
+	width: 65%;
+}
+
+#este{
+	width: 18%;
+}
+
+#right{
+	width: 66%;
+}
+
+#left{
+	width: 30%;
+}
+
+#seleccionados{
+	overflow: auto;
+	height: 30em;
+	width: 20em;
+}
+
+#botones_div{
+	text-align: center;
+	padding: 1em;
+}
+
+#precio_div{
+	text-align: left;
+	padding: 1em;
+
+}
+
+.listado_eventos a{
+	display: block;
+}
+
+.listado_eventos{
+	display: inline-block;
+	margin: 1em;
+	vertical-align: top;
+	height: 20em;
+	width: 10em;
+}
+
+.lista_eventos{
+	display: block;
+}
+
+.paginador{
+	text-align: center;
+}
+
+.secciones{
+	display: inline-block;
+	margin: 1em;
+	vertical-align: top;
+}
+
+.img_evento{
+	width: 15em;
+	height: 30em;
+}

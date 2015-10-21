@@ -27,4 +27,7 @@ Route::get('/', function () {
 //>>>>>>> 554eea1afd186ff0bc0a99c7cf6970436a67b88d
 });
 
-Route::get('/comprar/{id_evento}', 'VentasController@reservarAsientos');
+Route::get('/eventos', 'VentasController@index');
+Route::get('/evento/{id_evento}', 'VentasController@verEvento');
+Route::get('/reservar/{id_evento}', 'VentasController@reservarAsientos');
+// Route::get('datos', 'VentasController@insercionesDatos');
