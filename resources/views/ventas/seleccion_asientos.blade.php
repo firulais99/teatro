@@ -64,14 +64,18 @@
 
 	function seleccionarAsiento(){
 		var asiento = '';
+		var html = '';
 
-		if($(this).hasClass('reservado')){
-			asiento = $(this).find('input[type="hidden"] :first').val();
-			$(this).removeClass('reservado');
-			$('#asiento#' + asiento).parent().fadeOut();
-			$('#asiento#' + asiento).parent().remove();
+		if($(this).hasClass('seleccionado')){
+			asiento = $(this).find('.asiento_selected:first').val();
+			$(this).removeClass('seleccionado');
+			$('#asiento-' + asiento).parent().fadeOut();
+			$('#asiento-' + asiento).parent().remove();
 		}else{
-
+			asiento = $(this).find('.asiento_selected:first').val();
+			$(this).addClass('seleccionado');
+			html = '<li class="list-group-item"><label>' + asiento + '</label><input type="hidden" name="asiento-' + asiento +  '" id="asiento-' + asiento + '" value="' + asiento + '"/></li>';
+			$('#asientos_seleccionados').append(html);
 		}
 	}
 </script>

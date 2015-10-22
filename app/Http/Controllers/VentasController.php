@@ -168,7 +168,7 @@ class VentasController extends Controller{
 
         			foreach($asientos_reservados as $reservado)
         				if(strcmp($reservado->fila, $fila[0]) == 0 && strcmp($reservado->numero, $fila[1][$i]) == 0){
-        					$asientos .= ' reservado"';
+        					$asientos .= ' reservado';
                             $encontrado = true;
                             break;
                         }
@@ -178,9 +178,9 @@ class VentasController extends Controller{
                 }
 
                 if($fila[1][$i] == 0)
-                    $asientos .= '>';
+                    $asientos .= '">';
                 else
-    			    $asientos .= '>' . $fila[1][$i] . '<input type="hidden" id="' . $fila[0] . '-' . $fila[1][$i] . ' " name="' . $fila[0] . '-' . $fila[1][$i] . '" value="' . $fila[0] . '-' . $fila[1][$i] . '"/>';
+    			    $asientos .= '">' . $fila[1][$i] . '<input type="hidden" class="asiento_selected" name="' . $fila[0] . '-' . $fila[1][$i] . '" value="' . $fila[0] . '-' . $fila[1][$i] . '"/>';
 
                 $asientos .= '</div></td>';
     		}

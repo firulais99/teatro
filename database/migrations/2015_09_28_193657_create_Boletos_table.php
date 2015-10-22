@@ -14,6 +14,7 @@ class CreateBoletosTable extends Migration
     {
         Schema::create('Boletos', function (Blueprint $table) {
             $table->increments('id');
+            $table->decimal('precio', 5, 2);
             $table->integer('id_evento')->unsigned();
             $table->foreign('id_evento')->references('id')->on('Eventos');
             $table->string('id_referencia');

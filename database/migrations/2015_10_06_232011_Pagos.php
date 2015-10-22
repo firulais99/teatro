@@ -12,12 +12,13 @@ class Pagos extends Migration
      */
     public function up()
     {
-        Schema::table('pagos', function (Blueprint $table) {
+        Schema::table('Pagos', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->dateTime('fecha');
-            $table->string('referencia');
             $table->decimal('importe', 5, 2);
+            $table->integer('id_referencia')->unsigned();
+            $table->foreign('id_referencia')->references('id')->on('Referencia');
             $table->integer('id_taquilla')->unsigned();
             $table->foreign('id_taquillero')->references('taquilleros')->on('id');
             $table->integer('id_evento')->unsigned();

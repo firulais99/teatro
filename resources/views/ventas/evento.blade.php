@@ -36,7 +36,11 @@
 			  	</ul>
 			</div>
 		</div>
-		<a href="/reservar/{{$evento->id}}" class="btn btn-default secciones">Reservar Asientos <span class="glyphicon glyphicon-shopping-cart"></span></a>
+		<div id="botones_div" class="panel panel-default secciones">
+			<a href="/eventos" class="btn btn-default">Regresar <span class="glyphicon glyphicon-arrow-left"></span></a>
+			<span>&nbsp;&nbsp;</span>
+			<a href="/reservar/{{$evento->id}}" class="selecciones btn btn-primary">Comprar <span class="glyphicon glyphicon-shopping-cart"></span></a>
+		</div>
 	</div>
 </div>
 @stop
