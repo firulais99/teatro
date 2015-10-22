@@ -17,7 +17,7 @@ class Eventos extends Model
 	public static function getHorariosEvento($id_evento){
 		return self::join('Horarios_evento', 'Eventos.id', '=', 'Horarios_evento.id_evento')
 			->join('Horarios', 'Horarios.id', '=', 'Horarios_evento.id_horario')
-			->select('Horarios.hora', 'Horarios_evento.fecha')
+			->select('Horarios.hora', 'Horarios_evento.fecha', 'Horarios.id')
 			->where('Eventos.id', '=', $id_evento)
 			->orderBy('Horarios.hora', 'desc')
 			->get();

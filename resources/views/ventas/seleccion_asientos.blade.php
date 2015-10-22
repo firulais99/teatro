@@ -18,7 +18,7 @@
 	</div>
 	<div class="secciones">
 		<div id="seleccionados" class="panel panel-default">
-			<div class="panel-heading">Asientos seleccionados.</div>
+			<div class="panel-heading">Asientos seleccionados.<button type="button" class="close" id="quitar_asientos" title="Quitar Asientos" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
 			<ul class="list-group" id="asientos_seleccionados"></ul>
 		</div>
 		<div id="precio_div" class="panel panel-default">
@@ -41,25 +41,35 @@
 <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
 <script type="text/javascript">
 	$(document).on('ready', function(){
-		pintarEscenario();
-		$('.asiento').on('click', seleccionarAsiento);
+		$('#horario').on('change',pintarEscenario);
+		$('#quitar_asientos').on('click', quitarAsientos);
 	});
 
+	function quitarAsientos(){
+		$('#asientos_seleccionados').html('');
+		$('.seleccionado').removeClass('seleccionado');
+	}
+
 	function pintarEscenario(){
-		$.ajax({
-			type: "POST",
-			url: "/escenario",
-			data: {
-				id_horario: $('#horario').val(),
-				id_evento: $('#id_evento').val(),
-				_token: $('#_token').val()
-			},
-			dataType: "json",
-			async: false,
-			success: function(json){
-				$('#teatro').html(json.escenario);
-			}
-		});
+		if($('#horario').val() == 0)
+			$('#teatro').html('');
+		else{
+			$.ajax({
+				type: "POST",
+				url: "/escenario",
+				data: {
+					id_horario: $('#horario').val(),
+					id_evento: $('#id_evento').val(),
+					_token: $('#_token').val()
+				},
+				dataType: "json",
+				async: false,
+				success: function(json){
+					$('#teatro').html(json.escenario);
+					$('.asiento').on('click', seleccionarAsiento);
+				}
+			});
+		}
 	}
 
 	function seleccionarAsiento(){
