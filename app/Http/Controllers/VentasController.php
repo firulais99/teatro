@@ -116,6 +116,10 @@ class VentasController extends Controller{
         return view('ventas.seleccion_asientos', compact('evento', 'horarios', 'id_evento', 'titulo'));
     }
 
+    public function realizarVenta(Request $request){
+        return view('ventas.credito');
+    }
+
     public function generarEscenario(Request $request){
     	$asientos_reservados = Eventos::getAsientosReservados($request->input('id_evento'), $request->input('id_horario'));
     	$asientos = '<table id="tbl_escenario">
