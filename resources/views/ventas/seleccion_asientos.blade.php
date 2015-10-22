@@ -18,7 +18,7 @@
 	</div>
 	<div class="secciones">
 		<div id="seleccionados" class="panel panel-default">
-		<div class="panel-heading">Asientos seleccionados.</div>
+			<div class="panel-heading">Asientos seleccionados.</div>
 			<ul class="list-group" id="asientos_seleccionados"></ul>
 		</div>
 		<div id="precio_div" class="panel panel-default">
@@ -33,29 +33,46 @@
 </div>
 <div class="secciones" id="right">
 	<div class="panel panel-default" id="panel_escenario">
+		<div class="panel-heading"><h3>Seleccione sus asientos.</h3></div>
 		<div id="teatro"><div>
-		<br/>
-		<div id="escenario"><h2>Escenario</h2></div>
 	</div>
 </div>
 <input type="hidden" name="id_evento" id="id_evento" value="{{$id_evento}}"/>
+<input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
 <script type="text/javascript">
 	$(document).on('ready', function(){
 		pintarEscenario();
+		$('.asiento').on('click', seleccionarAsiento);
 	});
 
 	function pintarEscenario(){
-		$.post(
-			'http://localhost:8000/esenario',
-			{
-				horario: $('#horario').val(),
-				id_evento: $('#id_evento').val()
+		$.ajax({
+			type: "POST",
+			url: "/escenario",
+			data: {
+				id_horario: $('#horario').val(),
+				id_evento: $('#id_evento').val(),
+				_token: $('#_token').val()
 			},
-			function(json){
+			dataType: "json",
+			async: false,
+			success: function(json){
 				$('#teatro').html(json.escenario);
-			},
-			'json'
-		);
+			}
+		});
+	}
+
+	function seleccionarAsiento(){
+		var asiento = '';
+
+		if($(this).hasClass('reservado')){
+			asiento = $(this).find('input[type="hidden"] :first').val();
+			$(this).removeClass('reservado');
+			$('#asiento#' + asiento).parent().fadeOut();
+			$('#asiento#' + asiento).parent().remove();
+		}else{
+
+		}
 	}
 </script>
 @stop

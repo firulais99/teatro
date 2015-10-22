@@ -15,17 +15,17 @@
 }
 
 #right{
-	width: 54%;
+	width: 56.5%;
 }
 
 #left{
-	width: 41%;
+	width: 39%;
 }
 
 #seleccionados{
 	overflow: auto;
 	height: 30em;
-	width: 20em;
+	width: 18em;
 }
 
 #botones_div{
@@ -40,16 +40,15 @@
 }
 
 #panel_escenario{
-	text-align: center;
-	padding: 1em; 
+	text-align: left;
 }
 
-#escenario{
-	border-radius: 2em;
-	border: 1px #ccc solid;
-	width: 50%;
-	height: 5em;
-	margin: 0 auto;
+#tbl_escenario{
+	font-size: 0.6072em;
+}
+
+.tabla_escenario{
+	margin: 1em;
 }
 
 .listado_eventos a{
@@ -85,4 +84,19 @@
 
 .evento_info{
 	width: 80%;
+}
+
+.celdas_escenario{
+	padding: 0.1em;
+}
+
+.asiento{
+	border: 1px #ccc solid;
+	text-align: center;
+	cursor: pointer;
+}
+
+.reservado{
+	color: white;
+	background-color: red;
 }

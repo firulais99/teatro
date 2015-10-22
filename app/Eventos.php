@@ -23,11 +23,13 @@ class Eventos extends Model
 			->get();
 	}
 
-	public static function getAsientosReservados($id_evento){
-		return self::join('Asientos_evento', 'evento.id', '=', 'asientos_evento.id_evento')
-			->join('asientos', 'asientos.id', '=', 'asientos_evento.id_asiento')
-			->select('asientos.*')
-			->where('eventos.id', '=', $id_evento)
+	public static function getAsientosReservados($id_evento, $id_horario){
+		return self::join('Asientos_evento', 'Eventos.id', '=', 'Asientos_evento.id_evento')
+			->join('Asientos', 'Asientos.id', '=', 'Asientos_evento.id_asiento')
+			->join('Horarios_evento', 'Horarios_evento.id_horario', '=', 'Eventos.id')
+			->select('Asientos.*')
+			->where('Eventos.id', '=', $id_evento)
+			->where('Horarios_evento.id_horario', '=', $id_horario)
 			->get();
 	}
 

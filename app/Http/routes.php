@@ -30,5 +30,5 @@ Route::get('/', function () {
 Route::get('/eventos', 'VentasController@index');
 Route::get('/evento/{id_evento}', 'VentasController@verEvento');
 Route::get('/reservar/{id_evento}', 'VentasController@reservarAsientos');
-Route::post('/escenario', 'VentanasController@generarEscenario');
+Route::post('/escenario', 'VentasController@generarEscenario');
 // Route::get('datos', 'VentasController@insercionesDatos');
