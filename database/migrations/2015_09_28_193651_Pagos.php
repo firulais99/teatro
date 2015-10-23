@@ -12,17 +12,17 @@ class Pagos extends Migration
      */
     public function up()
     {
-        Schema::table('Pagos', function (Blueprint $table) {
+        Schema::create('Pagos', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->dateTime('fecha');
             $table->decimal('importe', 5, 2);
             $table->integer('id_referencia')->unsigned();
-            $table->foreign('id_referencia')->references('id')->on('Referencia');
-            $table->integer('id_taquilla')->unsigned();
-            $table->foreign('id_taquillero')->references('taquilleros')->on('id');
+            $table->foreign('id_referencia')->references('id')->on('Referencias');
+            $table->integer('id_taquillero')->unsigned();
+            $table->foreign('id_taquillero')->references('id')->on('Taquilleros');
             $table->integer('id_evento')->unsigned();
-            $table->foreign('id_evento')->references('eventos')->on('id');
+            $table->foreign('id_evento')->references('id')->on('Eventos');
             $table->timestamps();
         });
     }
@@ -34,7 +34,7 @@ class Pagos extends Migration
      */
     public function down()
     {
-        Schema::table('pagos', function (Blueprint $table) {
+        Schema::drop('Pagos', function (Blueprint $table) {
             //
         });
     }

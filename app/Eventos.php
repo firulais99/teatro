@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Eventos extends Model
-{
+class Eventos extends Model{
    
 	protected $table = 'Eventos';
 	protected $fillable = ['nombre', 'nombre','fecha','hora','sinopsis','artistas','image'];
@@ -26,10 +25,9 @@ class Eventos extends Model
 	public static function getAsientosReservados($id_evento, $id_horario){
 		return self::join('Asientos_evento', 'Eventos.id', '=', 'Asientos_evento.id_evento')
 			->join('Asientos', 'Asientos.id', '=', 'Asientos_evento.id_asiento')
-			->join('Horarios_evento', 'Horarios_evento.id_horario', '=', 'Eventos.id')
 			->select('Asientos.*')
 			->where('Eventos.id', '=', $id_evento)
-			->where('Horarios_evento.id_horario', '=', $id_horario)
+			->where('Asientos_evento.id_horario', '=', $id_horario)
 			->get();
 	}
 

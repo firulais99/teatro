@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Eventos;
+use App\Asiento;
+use App\EventoAsientoModel;
 
 class VentasController extends Controller{
     /**
@@ -116,8 +118,40 @@ class VentasController extends Controller{
         return view('ventas.seleccion_asientos', compact('evento', 'horarios', 'id_evento', 'titulo'));
     }
 
-    public function realizarVenta(Request $request){
-        return view('ventas.credito');
+    public function realizarVenta(Request $request, $id_evento){
+        $evento = Eventos::getEvento($id_evento);
+        $titulo = 'Realizar compra';
+        $meses = array(
+            '01' => 'Enero',
+            '02' => 'Febrero',
+            '03' => 'Marzo',
+            '04' => 'Abril',
+            '05' => 'Mayo',
+            '06' => 'Junio',
+            '07' => 'Julio',
+            '08' => 'Agosto',
+            '09' => 'Septiembre',
+            '10' => 'Octubre',
+            '11' => 'Noviembre',
+            '12' => 'Diciembre'
+        );
+        $asientos = $request->input('asientos');
+        $id_horario = $request->input('id_horario');
+        return view('ventas.credito', compact('asientos', 'titulo', 'evento', 'meses', 'id_evento', 'id_horario'));
+    }
+
+    public function guardarCompra(Request $request){
+        $asientos = $request->input('asientos');
+        $id_evento = $request->input('id_evento');
+        $id_horario = $request->input('id_horario');
+
+        foreach($asientos as $asiento){
+            $array_asiento = explode('-', $asiento);
+            $id_asiento = Asiento::buscarAsiento($array_asiento[0], $array_asiento[1])->id;
+            EventoAsientoModel::guardar($id_asiento, $id_evento, $id_horario);
+        }
+
+        return view('ventas.compra_realizada', compact('asientos'));
     }
 
     public function generarEscenario(Request $request){
@@ -149,7 +183,7 @@ class VentasController extends Controller{
     	$tabla = '<table class="tabla_escenario">';
 
     	foreach($seccion as $fila)
-    		$tabla .= '<tr><td class="celdas_escenario"><strong>' . $fila[0] . '</strong></td></tr>';
+    		$tabla .= '<tr><td><strong>' . $fila[0] . '</strong></td></tr>';
 
     	$tabla .= '</table>';
     	return $tabla;
@@ -184,7 +218,7 @@ class VentasController extends Controller{
                 if($fila[1][$i] == 0)
                     $asientos .= '">';
                 else
-    			    $asientos .= '">' . $fila[1][$i] . '<input type="hidden" class="asiento_selected" name="' . $fila[0] . '-' . $fila[1][$i] . '" value="' . $fila[0] . '-' . $fila[1][$i] . '"/>';
+    			    $asientos .= '">' . $fila[1][$i] . '<input type="hidden" class="asiento_selected" name="' . $fila[0] . '-' . $fila[1][$i] . '" value="' . $fila[0] . '-' . $fila[1][$i] . '" id="' . $fila[0] . '-' . $fila[1][$i] . '"/>';
 
                 $asientos .= '</div></td>';
     		}
@@ -197,7 +231,7 @@ class VentasController extends Controller{
     }
 
     public function insercionesDatos(){
-        /*$query = "insert into Teatros (nombre, domicilio, telefono, email, municipio) values('Cholitos theater', 'Schwarzstrasse 99', '7232323', 'cholitos_theater@cholitos.com', 'koeln')";
+        $query = "insert into Teatros (nombre, domicilio, telefono, email, municipio) values('Cholitos theater', 'Schwarzstrasse 99', '7232323', 'cholitos_theater@cholitos.com', 'koeln')";
         \DB::statement($query);
         $query = "insert into Eventos (id_teatro, nombre, sinopsis, elenco, fecha, artista, image) values(1, 'Enrique Bunbury Unplugged', 'asfasfsdfsadfadfadsfasdfasdfasdfasdfsafasdfasdfasdfasdfasdfasdfasdfasdfadfasdfasdfasdfadfasdfasdfasdfasdfasdFasfasfsdfsadfadfadsfasdfasdfasdfasdfsafasdfasdfasdfasdfasdfasdfasdfasdfadfasdfasdfasdfadfasdfasdfasdfasdfasdF', 'Enrique Bunbury', '2015-10-09', 'Enrique Bunbury', 'bunbury.jpg')";
 
@@ -210,9 +244,9 @@ class VentasController extends Controller{
         for($i = 0; $i < 30; $i++){
         	$query = "insert into Horarios_evento (id_evento, id_horario, fecha) values(" . ($i + 1) . ", 1, '2015-10-09')";
             \DB::statement($query);
-        }*/
+        }
 
-        /*foreach($this->seccion1 as $fila){
+        foreach($this->seccion1 as $fila){
             $size = count($fila[1]);
 
             for($i = 0; $i < $size; $i++){
@@ -265,6 +299,6 @@ class VentasController extends Controller{
                 if($fila[1][$i] != 0)
                     \DB::statement('insert into Asientos (id_teatro, fila, numero) values(1, \'' . $fila[0] . '\', ' . $fila[1][$i] .')');
             }
-        }*/
+        }
     }
 }

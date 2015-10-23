@@ -105,3 +105,12 @@
 	color: white;
 	background-color: blue;
 }
+
+.tarjeta{
+	width: 80%;
+}
+
+.botones_compra{
+	text-align: center; 
+	margin-top: 1em;
+}
