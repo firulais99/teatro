@@ -26,6 +26,7 @@
 				<label>Total MN: $</label><label id="costo"></label>
 			</div>
 			<div id="botones_div" class="panel panel-default">
+
 				<a href="/evento/{{$evento->id}}" class="btn btn-default">Regresar <span class="glyphicon glyphicon-arrow-left"></span></a>
 				<span>&nbsp;&nbsp;</span>
 				<button type="submit" class="selecciones btn btn-primary">Comprar <span class="glyphicon glyphicon-shopping-cart"></span></button>

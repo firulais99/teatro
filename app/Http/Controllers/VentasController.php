@@ -230,6 +230,16 @@ class VentasController extends Controller{
     	return $asientos;
     }
 
+    /**
+     *
+     */
+    public function incercionesDatos2(){
+        $query = "insert into Administradores (usuario,password,nombre,apellido, domicilio,email,telefono) values('angel_pat', 'pat123', 'angel ismael', 'salazar pat', 'koeln','angelpat123@gmail.com','7447498')";
+        \DB::statement($query);
+
+    }
+
+
     public function insercionesDatos(){
         $query = "insert into Teatros (nombre, domicilio, telefono, email, municipio) values('Cholitos theater', 'Schwarzstrasse 99', '7232323', 'cholitos_theater@cholitos.com', 'koeln')";
         \DB::statement($query);

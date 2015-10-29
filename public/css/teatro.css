@@ -108,9 +108,28 @@
 
 .tarjeta{
 	width: 80%;
+	position: relative;
 }
 
 .botones_compra{
-	text-align: center; 
+	position: absolute;
 	margin-top: 1em;
+	width: 600px;
+	margin-right: 600px;
+}
+#seccionbotones {
+   padding-top: 7%;
+}
+
+#captcha{
+position: absolute;
+align-content: space-between;
+}
+
+#captcha2{
+ position: absolute;
+ margin-top: 200px;
+	margin-left: 80px;
+
+
 }
